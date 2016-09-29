@@ -12,6 +12,7 @@ XPT2046_touchscreenライブラリに以下の機能を追加しました。
 
 ## 必要なライブラリ
 
+- XPT2046_touchscreen
 - [Params](https://github.com/h-nari/Params)
 - Adafruit_GFX
 

@@ -16,7 +16,7 @@ bool LcdTouchscreen::getPoint(int16_t *pX, int16_t *pY, uint16_t *pZ)
 
   if(m_ts.touched()){
     TS_Point pt = m_ts.getPoint();
-  
+
     x = m_a[0] + (((int32_t)m_b[0][0]*pt.x+(int32_t)m_b[0][1]*pt.y)>>12);
     y = m_a[1] + (((int32_t)m_b[1][0]*pt.x+(int32_t)m_b[1][1]*pt.y)>>12);
 
@@ -100,11 +100,11 @@ bool LcdTouchscreen::setCalibration(const CalibData *aData, uint16_t nData)
     m_b[1][1] = b[1][1];
   }
   else if(c[0][1] > LinearityThreshold && c[1][0] > LinearityThreshold){
-    m_a[0] = a[0][1];
-    m_a[1] = a[1][0];
+    m_a[0] = a[1][0];
+    m_a[1] = a[0][1];
     m_b[0][0] = 0;
-    m_b[0][1] = b[0][1];
-    m_b[1][0] = b[1][0];
+    m_b[0][1] = b[1][0];
+    m_b[1][0] = b[0][1];
     m_b[1][1] = 0;
   }
   else return false;

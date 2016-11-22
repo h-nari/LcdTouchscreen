@@ -45,7 +45,7 @@ void setup()
   ts.begin();
 
   tft.setTextSize(2);
-  tft.setRotation(3);
+  tft.setRotation(0);
   eeparam.load();
 
   if(ts.touched() || !ts.loadCalibrationData(&eeparam)){

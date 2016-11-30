@@ -116,7 +116,7 @@ bool LcdTouchscreen::getCalibrationData(uint16_t xs, uint16_t ys, CalibData *dat
 {
   int r = 10;
   int16_t xt, yt;
-  
+
   m_dpy->fillScreen(m_bgColor);
   m_dpy->drawLine(xs-r, ys, xs+r, ys, m_fgColor);
   m_dpy->drawLine(xs, ys-r, xs, ys+r, m_fgColor);
@@ -124,6 +124,8 @@ bool LcdTouchscreen::getCalibrationData(uint16_t xs, uint16_t ys, CalibData *dat
   while(!getRawPoint(&xt, &yt)){
     delay(50);
   }
+  while(touched());		// wait released
+
   data->lcd[0] = xs;
   data->lcd[1] = ys;
   data->tp[0]  = xt;

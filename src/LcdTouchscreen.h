@@ -4,6 +4,9 @@
 #include <Preferences.h>
 #include "XPT2046_Touchscreen.h"
 #include "Adafruit_GFX.h"
+#include "Params.h"
+
+#define PARAM_CALIBRATION "calib"
 
 class CalibData {
  public:
@@ -23,7 +26,7 @@ class LcdTouchscreen {
   uint16_t m_bgColor;
 
  public:
-  LcdTouchscreen(uint8_t cs_pin = 16, SPIClass &spi = SPI);
+  LcdTouchscreen(uint8_t cs_pin = 16 /* , SPIClass &spi = SPI */);
 
   bool begin();
   bool touched() { return m_ts.touched(); }
@@ -32,8 +35,8 @@ class LcdTouchscreen {
   bool setCalibration(const CalibData *aData, uint16_t nData);
   bool calibrate(Adafruit_GFX *dpy, uint16_t fgColor, uint16_t bgColor);
   void getCalibrationString(char *buf, size_t size);
-  bool saveCalibrationData();
-  bool loadCalibrationData();
+  bool saveCalibrationData(Params *params);
+  bool loadCalibrationData(Params *params);
 
  protected:
   bool getCalibrationData(uint16_t xs, uint16_t ys, CalibData *data);
